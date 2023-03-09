@@ -1,7 +1,14 @@
 import React, { use } from "react";
 
 const NewFetch = ({ url }) => {
-  const data = use(fetch(url).then((res) => res.json()));
+  const data = use(
+    fetch(url)
+      .then((res) => res.json())
+      .catch((err) => {
+        // Tratar o erro de forma adequada aqui
+        console.error("Erro ao carregar os dados", err);
+      })
+  );
 
   return (
     <div>
